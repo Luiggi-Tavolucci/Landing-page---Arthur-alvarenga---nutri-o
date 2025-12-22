@@ -1,264 +1,531 @@
-*{
+/* =========================================
+   1. VARIÁVEIS E RESET (A Base de Tudo)
+   ========================================= */
+:root {
+    /* Paleta do Arthur (Verde e Dourado) */
+    --primary-color: #1C4D1C;   /* Verde Escuro Institucional */
+    --secondary-color: #72C35C; /* Verde Mais Claro (Detalhes) */
+    --accent-color: #C5B119;    /* Dourado/Amarelo Premium */
+    
+    /* Tons Neutros (Inspirado na referência) */
+    --bg-color: #F6F6F6;
+    --white: #ffffff;
+    --dark-text: #0d0d0d;
+    --gray-text: #555555;
+    
+    /* Espaçamento Padrão */
+    --section-padding: 80px 8%;
+}
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte padrão limpa */
 }
 
-body{
-    background-color: #F6F6F6;
+html {
+    scroll-behavior: smooth; /* Rolagem suave ao clicar nos links */
 }
 
-header{
+body {
+    background-color: var(--bg-color);
+    color: var(--dark-text);
+}
+
+/* =========================================
+   2. HEADER & NAVBAR
+   ========================================= */
+header {
     width: 100%;
-    padding: 28px 8%;
+    padding: 20px 8%;
+    background-color: var(--bg-color);
+    position: sticky; /* Menu fixo no topo ao rolar */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Sombra sutil */
 }
 
-#navbar{
+#navbar {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-#logo{
-    max-height: 200px;
+#logo {
+    height: 60px; /* Tamanho controlado do logo */
     width: auto;
 }
 
-#nav-list{
+#nav-list {
     display: flex;
     list-style: none;
-    gap: 48px;
-    margin: 0;
-    padding: 0px;
+    gap: 32px;
 }
 
 .nav-item a {
     text-decoration: none;
-    color: #000000;
-    width: 600;
-}
- 
-.nav-item.active a {
-    color: #000000;
-    border-bottom: 3px solid #C5B119;
+    color: var(--dark-text);
+    font-weight: 600; /* Corrigido de width:600 */
+    transition: color 0.3s;
 }
 
-.nav-item:hover{
-    transform: translateY(-5px);
-    background: transparent;
+.nav-item.active a,
+.nav-item a:hover {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
 }
 
-#nav-btn{
-    padding: 15px 30px;
-    border-radius: 16px;
+#nav-btn {
+    padding: 12px 24px;
+    border-radius: 50px; /* Mais arredondado como na referência */
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #000000;
-    border-style: solid;
-    border-color: #C5B119;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    transition: all 0.3s ease;
 }
 
 #nav-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(253, 197, 0, 0.5);
-    background-color: #72C35C;
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
 }
 
-#home{
+/* =========================================
+   3. SEÇÃO HERO (HOME)
+   ========================================= */
+#home {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 28px 8%; /* Usando a mesma porcentagem do header para alinhar */
-    min-height: calc(100vh - 122px); /* Faz a seção ocupar quase a tela inteira na vertical */
+    justify-content: space-between;
+    padding: var(--section-padding);
+    min-height: 90vh;
+    gap: 40px;
 }
 
 .home-content {
-    flex: 1; /* Permite que o conteúdo de texto cresça */
-    max-width: 50%; /* Ocupa no máximo metade da seção */
+    flex: 1;
+    max-width: 600px;
 }
 
 .home-content h1 {
-    font-size: 3.2rem; /* Tamanho grande e impactante */
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--dark-color);
-    margin-bottom: 20px;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--primary-color);
+    margin-bottom: 24px;
 }
 
-.home-content span{
-    color: #C5B119;
+.home-content span {
+    color: var(--accent-color);
 }
 
 .home-content p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     color: var(--gray-text);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .home-btn {
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
-.btn-zap{
-    color:#F6F6F6 ;
-    background-color: #1C4D1C;
-    padding: 15px 30px;
+/* Botões Padronizados */
+button, .btn-zap, .btn-mais {
+    padding: 16px 32px;
     border-radius: 8px;
-    border-style: none;
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
     transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
 }
 
-.btn-zap:hover{
+.btn-zap {
+    background-color: #25D366; /* Verde WhatsApp Oficial */
+    color: var(--white);
+}
+
+.btn-zap:hover {
+    background-color: #1ebc57;
     transform: translateY(-3px);
-    box-shadow:8px 12px 24px rgba(253, 198, 0, 0.673);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
 }
 
-.btn-mais{
-    color:#1C4D1C ;
+.btn-mais {
     background-color: transparent;
-    padding: 15px 30px;
-    border-radius: 8px;
-    font-weight: 700;
-    text-decoration: none;
-    border-color: #1C4D1C;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
-.btn-mais:hover{
-    border-color: transparent;
-    background-color: #1C4D1C;
-    color: #F6F6F6;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(253, 197, 0, 0.5);
+.btn-mais:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
-/* 1. O container do card se torna o nosso ponto de referência */
+/* Card Sobreposto (Foto do Arthur) */
 .sobre-card {
-    position: relative; /* ESSENCIAL: estabelece o contexto de posicionamento */
-    width: 350px;
-    height: 450px;
-    border-radius: 12px;
-    overflow: hidden; /* Garante que a imagem não "vaze" das bordas arredondadas */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 380px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 20px 20px 0px var(--accent-color); /* Efeito visual moderno */
+    flex-shrink: 0;
 }
 
 .sobre-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz a imagem cobrir todo o espaço sem distorcer */
+    object-fit: cover;
 }
 
-/* 2. O texto agora é posicionado de forma absoluta dentro do .sobre-card */
 .texto-sobreposto {
-    position: absolute; /* ESSENCIAL: permite a sobreposição */
-    bottom: 0; /* Alinha na parte de baixo do card */
-    left: 0;   /* Alinha na parte da esquerda do card */
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    padding: 24px;
-    color: #F6F6F6;
-
-    /* Truque para legibilidade: um gradiente escuro no fundo do texto */
-    /* Começa transparente no meio e fica mais escuro na base */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 30px 20px;
+    background: linear-gradient(to top, rgba(28, 77, 28, 0.9), transparent);
+    color: var(--white);
 }
 
-#vantagens{
+.texto-sobreposto h2 { font-size: 1.5rem; }
+.texto-sobreposto h3 { font-size: 1rem; font-weight: 400; color: #ddd; }
+
+/* =========================================
+   4. VANTAGENS
+   ========================================= */
+#vantagens {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 28px 8%;
-    min-height: auto;
-    gap: 80px;
-}
-
-.vantagens-intro{
-    display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    padding: var(--section-padding);
+    gap: 60px;
+    background-color: var(--white);
 }
 
-.vantagens-intro h4{
-    padding: 8px;
-    background-color:#1C4D1C;
-    border-radius: 20px;
+.vantagens-intro {
+    text-align: center;
+    max-width: 800px;
 }
 
-.vantagens-intro h2{
-    font-size: 64px;
+.vantagens-intro h4 {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(197, 177, 25, 0.2); /* Dourado clarinho */
+    color: var(--primary-color);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
 }
 
-.vantagens-card{
+.vantagens-intro h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.vantagens-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    gap: 30px;
+    width: 100%;
+}
+
+.vantagens-card > div {
+    background-color: var(--bg-color);
+    padding: 40px 30px;
+    border-radius: 16px;
+    transition: transform 0.3s;
+    border: 1px solid #eee;
+}
+
+.vantagens-card > div:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+}
+
+.vantagens-card i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.vantagens-card strong {
+    display: block;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+}
+
+.vantagens-card p {
+    color: var(--gray-text);
+    line-height: 1.5;
+}
+
+/* =========================================
+   5. METODOLOGIA (Transformada em Timeline)
+   ========================================= */
+.metodologia {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
+    padding: var(--section-padding);
+    gap: 60px;
+    align-items: flex-start; /* Alinha no topo */
 }
 
-.vantagens-card div{
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    border-radius: 20px;
-    gap: 18px;
-    width: 33%;
-    padding: 20px;
-    background-color: #F6F6F6;
-    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
-    font-size: 20px;
-}
-
-.metodologia{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 28px 8%;
-    min-height: 100vh;
-}
-
+/* A imagem fica fixa ou lateral */
 .metodologia-card {
-    max-width: 50%;
-    width: 350px;
-    height: 450px;
-    border-radius: 12px;
+    width: 40%;
+    height: 600px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Faz a foto acompanhar o scroll se a lista for longa */
+    top: 100px;
 }
 
-.metodologia-card img {
+.metodologia-conteudo {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.metodologia-title {
+    margin-bottom: 40px;
+}
+
+.metodologia-title p {
+    color: var(--accent-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.metodologia-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* Estilo dos Passos (Timeline) */
+.metodologia-lista > div {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* Ícone do passo com círculo */
+.metodologia-lista i {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 2; /* Fica acima da linha */
+}
+
+/* Linha conectora (o truque da timeline) */
+.metodologia-lista > div:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 24px; /* Metade da largura do ícone (50/2 = 25 - 1px da borda) */
+    width: 2px;
+    height: calc(100% - 10px); /* Conecta até o próximo */
+    background-color: #ddd;
+    z-index: 1;
+}
+
+.metodologia-lista strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--dark-text);
+    margin-bottom: 8px;
+}
+
+.metodologia-lista p {
+    color: var(--gray-text);
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+/* =========================================
+   SEÇÃO SOBRE MIM (MOSAICO DE FOTOS)
+   ========================================= */
+
+.sobre-mim {
+    padding: var(--section-padding);
+    background-color: var(--white); /* Fundo branco para contraste com o cinza do site */
+    display: flex;
+    justify-content: center;
+}
+
+.container-sobre {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* --- Estilo do Texto --- */
+.sobre-texto {
+    flex: 1; /* Ocupa metade da tela */
+}
+
+.section-tag {
+    color: var(--accent-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    justify-self: center;
+    letter-spacing: 1px;
+}
+
+.sobre-texto h2 {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.destaque-texto {
+    color: var(--primary-color); /* Ou use var(--accent-color) se quiser dourado */
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-underline-offset: 5px;
+}
+
+.bio-intro {
+    font-size: 1.1rem;
+    color: var(--gray-text);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Lista de Qualificações */
+.sobre-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sobre-lista li {
+    display: flex;
+    align-items: flex-start; /* Alinha ícone no topo se o texto for grande */
+    gap: 15px;
+}
+
+.sobre-lista i {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-top: -3px; /* Ajuste fino para alinhar com o texto */
+}
+
+.sobre-lista span {
+    color: var(--gray-text);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.sobre-lista strong {
+    color: var(--primary-color);
+}
+
+/* --- Estilo da Galeria (Mosaico) --- */
+.sobre-galeria {
+    flex: 1;
+    display: grid;
+    /* Define 2 colunas */
+    grid-template-columns: 1.5fr 1fr; 
+    /* Define 2 linhas de altura fixa (ajuste conforme necessário) */
+    grid-template-rows: 300px 300px; 
+    gap: 15px;
+}
+
+.foto-item {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.foto-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz a imagem cobrir todo o espaço sem distorcer */
+    object-fit: cover; /* Garante que a foto preencha sem distorcer */
+    transition: transform 0.5s ease;
 }
 
-.metodologia-conteudo{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: start;
+/* Efeito de zoom suave ao passar o mouse */
+.foto-item:hover img {
+    transform: scale(1.05);
 }
 
-.metodologia-title p{
-    display: flex;
-    align-items: start;
-    justify-content: flex-start;
+/* Configuração do Grid */
+
+/* Foto Principal: Ocupa a 1ª coluna inteira (da linha 1 até a 3) */
+.principal {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
 }
 
+/* Fotos menores ocupam a coluna 2 automaticamente */
+
+/* =========================================
+   6. RESPONSIVIDADE (Mobile)
+   ========================================= */
+@media (max-width: 992px) {
+    /* Ajustes Gerais */
+    header { padding: 15px 5%; }
+    
+    #navbar { flex-wrap: wrap; }
+    #nav-list { display: none; } /* Esconde menu no mobile (precisaria de JS p/ abrir) */
+    #nav-btn { display: none; } /* Oculta botão do header no mobile p/ ganhar espaço */
+
+    /* Hero */
+    #home { 
+        flex-direction: column-reverse; 
+        text-align: center;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .home-content h1 { font-size: 2.5rem; }
+    .home-btn { justify-content: center; }
+
+    .sobre-card { width: 100%; height: 400px; margin-bottom: 30px; }
+
+    /* Vantagens */
+    .vantagens-card { grid-template-columns: 1fr; } /* Uma coluna só */
+    .vantagens-intro h2 { font-size: 2rem; }
+
+    /* Metodologia */
+    .metodologia { flex-direction: column; }
+    .metodologia-card { display: none; } /* Esconde a foto da metodologia no celular p/ focar no texto */
+    .metodologia-conteudo { width: 100%; }
+}
