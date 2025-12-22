@@ -119,12 +119,12 @@ header {
     font-size: 3.5rem;
     font-weight: 800;
     line-height: 1.1;
-    color: var(--primary-color);
+    color: #22a03d;
     margin-bottom: 24px;
 }
 
 .home-content span {
-    color: var(--accent-color);
+    color:var(--primary-color);
 }
 
 .home-content p {
@@ -157,7 +157,7 @@ button, .btn-zap, .btn-mais {
 }
 
 .btn-zap {
-    background-color: #25D366; /* Verde WhatsApp Oficial */
+    background-color: #22a03d; /* Verde WhatsApp Oficial */
     color: var(--white);
 }
 
@@ -179,34 +179,183 @@ button, .btn-zap, .btn-mais {
 }
 
 /* Card Sobreposto (Foto do Arthur) */
+/* --- Atualização do Card da Home --- */
+
 .sobre-card {
-    position: relative;
-    width: 380px;
-    height: 500px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 20px 20px 0px var(--accent-color); /* Efeito visual moderno */
-    flex-shrink: 0;
+    position: relative; /* Mantém o contexto para os itens absolutos */
+    width: 380px;      /* Largura original ajustada levemente */
+    height: 500px;     /* Altura */
+    /* MUDANÇA IMPORTANTE: visible para os badges poderem "sair" da caixa */
+    overflow: visible; 
+    border-radius: 40px; /* Borda da imagem */
+    /* Sombra opcional para destacar do fundo */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
 }
 
-.sobre-card img {
+/* =========================================
+   HERO CARD - VISUAL PREMIUM (Suas Classes)
+   ========================================= */
+
+/* 1. O Container Principal (Onde a mágica acontece) */
+.sobre-card {
+    position: relative;
+    width: 380px;  /* Largura fixa */
+    height: 480px; /* Altura fixa (formato retangular vertical) */
+    z-index: 1;    /* Garante a ordem das camadas */
+    margin: 40px auto; /* Centraliza se necessário */
+    overflow: visible; /* ESSENCIAL: Deixa os badges "saírem" da caixa */
+    background: transparent; /* Removemos cores de fundo antigas */
+    box-shadow: none; /* Removemos sombras antigas do container */
+}
+
+/* --- A "AURA" (Fundo Iluminado atrás da foto) --- */
+/* Cria o brilho bege difuso atrás da foto usando suas classes */
+.sobre-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%; /* Um pouco maior que a foto */
+    height: 120%;
+    /* O degradê bege suave igual da referência */
+    background: radial-gradient(circle, rgb(80, 141, 50) 70%, rgba(255,255,255,0) 70%);
+    z-index: -1; /* Fica atrás da foto */
+    filter: blur(30px); /* O efeito de "aura" */
+    border-radius: 40px;
+    opacity: 0.8;
+}
+
+/* 2. A Imagem Principal (O formato "quadrado arredondado") */
+.foto-principal {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* AQUI ESTÁ O FORMATO PEDIDO: */
+    border-radius: 30px; /* Cantos arredondados modernos */
+    object-fit: cover;
+    object-position: top center; /* Foca no rosto */
+    
+    /* Sombra na própria foto para descolar do fundo */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    
+    /* Borda sutil (opcional, se quiser remover é só apagar) */
+    border: none; 
+    z-index: 0;
+}
+
+/* --- Estilo dos Badges Flutuantes (Pílulas Brancas) --- */
+.badge-flutuante {
+    position: absolute;
+    background-color: #ffffff;
+    padding: 14px 24px; /* Mais "gordinho" */
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Sombra forte e difusa para parecer que está voando alto */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    z-index: 10; /* Fica ACIMA da foto */
+    white-space: nowrap;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito ao passar o mouse nos badges */
+.badge-flutuante:hover {
+    transform: translateY(-5px);
+}
+
+.badge-flutuante span {
+    font-weight: 700;
+    color: #0d0d0d;
+    font-size: 1rem;
+}
+
+/* Cores dos Ícones (Mantendo suas classes) */
+.check-azul { color: #1DA1F2; font-size: 1.4rem; }
+.check-dourado { color: #C5B119; font-size: 1.4rem; }
+
+/* --- POSICIONAMENTO (Ajustado para o formato retangular) --- */
+
+/* 1. Nome (Esquerda, mais alto) */
+.posicao-nome {
+    top: 30%;
+    left: -50px; /* Sai bastante para a esquerda */
+}
+
+/* 2. Cargo (Direita, meio) */
+.posicao-cargo {
+    top: 55%;
+    right: -40px; /* Sai para a direita */
+}
+
+/* Garante que a imagem respeite a borda arredondada */
+/* Atualize este bloco no seu CSS */
+
+.foto-principal {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 40px; /* Mantém o arredondado */
+    display: block;
+    
+    /* --- ADICIONANDO A BORDA SOMBREADA --- */
+    /* 1. Uma borda fina dourada para definir o limite */
+    
+    /* 2. Uma sombra projetada escura e macia para dar profundidade */
+    /* box-shadow: deslocamento-x | deslocamento-y | desfoque | cor */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    
+    /* Garante que a borda não aumente o tamanho total da imagem */
+    box-sizing: border-box; 
 }
-
-.texto-sobreposto {
+/* Estilo padrão das "Etiquetas" (Badges) */
+.badge-flutuante {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px 20px;
-    background: linear-gradient(to top, rgba(28, 77, 28, 0.9), transparent);
-    color: var(--white);
+    background-color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    z-index: 10; /* Fica acima da foto */
+    white-space: nowrap;
 }
 
-.texto-sobreposto h2 { font-size: 1.5rem; }
-.texto-sobreposto h3 { font-size: 1rem; font-weight: 400; color: #ddd; }
+.badge-flutuante span {
+    font-weight: 700;
+    color: var(--dark-text); /* ou #000 */
+    font-size: 0.95rem;
+}
+
+/* Cores dos Ícones */
+.check-azul { color: #1DA1F2; font-size: 1.3rem; }
+.check-dourado { color: #C5B119; font-size: 1.3rem; }
+
+/* --- Posicionamento Individual --- */
+
+/* 1. Nome na Esquerda */
+.posicao-nome {
+    top: 35%;       /* Altura */
+    left: -30px;    /* Joga para fora na esquerda */
+}
+
+/* 2. Cargo na Direita */
+.posicao-cargo {
+    top: 65%;       /* Altura */
+    right: -30px;   /* Joga para fora na direita */
+}
+
+.grupo-fotos img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-left: -12px; /* Sobreposição */
+    object-fit: cover;
+}
+.grupo-fotos img:first-child { margin-left: 0; }
 
 /* =========================================
    4. VANTAGENS
@@ -228,7 +377,7 @@ button, .btn-zap, .btn-mais {
 .vantagens-intro h4 {
     display: inline-block;
     padding: 8px 16px;
-    background-color: rgba(197, 177, 25, 0.2); /* Dourado clarinho */
+    background-color: #22a07c; /* Dourado clarinho */
     color: var(--primary-color);
     border-radius: 50px;
     font-size: 0.9rem;
@@ -264,7 +413,7 @@ button, .btn-zap, .btn-mais {
 
 .vantagens-card i {
     font-size: 2.5rem;
-    color: var(--accent-color);
+    color: #22a07c;
     margin-bottom: 20px;
     display: block;
 }
@@ -396,7 +545,7 @@ button, .btn-zap, .btn-mais {
 }
 
 .section-tag {
-    color: var(--accent-color);
+    color: #22a07c;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -414,15 +563,13 @@ button, .btn-zap, .btn-mais {
 
 .destaque-texto {
     color: var(--primary-color); /* Ou use var(--accent-color) se quiser dourado */
-    text-decoration: underline;
     text-decoration-color: var(--accent-color);
-    text-underline-offset: 5px;
 }
 
 .bio-intro {
     font-size: 1.1rem;
     color: var(--gray-text);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     line-height: 1.6;
 }
 
@@ -441,7 +588,7 @@ button, .btn-zap, .btn-mais {
 }
 
 .sobre-lista i {
-    color: var(--accent-color);
+    color: #22a07c;
     font-size: 1.5rem;
     margin-top: -3px; /* Ajuste fino para alinhar com o texto */
 }
@@ -495,6 +642,313 @@ button, .btn-zap, .btn-mais {
 }
 
 /* Fotos menores ocupam a coluna 2 automaticamente */
+
+/* =========================================
+   SEÇÃO CONTEÚDOS (REELS VIVOS) & INSTAGRAM
+   ========================================= */
+
+.conteudos-section {
+    padding: var(--section-padding);
+    background-color: var(--bg-color); /* Cinza claro para separar do fundo branco */
+    display: flex;
+    justify-content: center;
+}
+
+.container-conteudos {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.conteudos-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.conteudos-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* --- Grid de Vídeos (Reels) --- */
+.videos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza se tiver menos de 3 vídeos */
+    gap: 30px;
+}
+
+/* O Cartão do Reel */
+.video-card.reel-mode {
+    width: 300px; /* Largura fixa simulando celular */
+    background-color: var(--white);
+    border-radius: 20px; /* Bordas bem arredondadas */
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.video-card.reel-mode:hover {
+    transform: translateY(-10px); /* Sobe um pouco ao passar o mouse */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Área do Vídeo (Thumbnail) */
+.video-thumb {
+    position: relative;
+    width: 100%;
+    /* Proporção 9:16 (Vertical) */
+    aspect-ratio: 9 / 16; 
+    overflow: hidden;
+    background-color: #000; /* Fundo preto enquanto carrega */
+}
+
+/* Configuração do Vídeo (HTML5) */
+.video-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ESSENCIAL: Preenche sem esticar a imagem */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Fica na base */
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.video-card:hover .video-thumb video {
+    opacity: 1; /* Fica 100% nítido ao passar o mouse */
+}
+
+/* Botão de Play (Decorativo) */
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    /* Efeito de vidro fosco */
+    background-color: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(5px); 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.5);
+    z-index: 10; /* Fica ACIMA do vídeo */
+    transition: all 0.3s ease;
+}
+
+.video-card:hover .play-btn {
+    background-color: var(--white);
+    color: #E1306C; /* Rosa do Instagram */
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Ícone do Instagram no canto superior */
+.reel-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--white);
+    font-size: 1.5rem;
+    z-index: 10; /* Fica ACIMA do vídeo */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Área de Texto abaixo do vídeo */
+.video-info {
+    padding: 20px;
+    background-color: var(--white);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 11;
+    position: relative; /* Garante que fique acima de qualquer overflow */
+}
+
+.video-info h3 {
+    font-size: 1.1rem;
+    color: var(--dark-text);
+    margin-bottom: 10px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.video-info span {
+    font-size: 0.9rem;
+    color: var(--primary-color); /* Verde Institucional */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- Banner do Instagram (Rodapé da seção) --- */
+.insta-banner {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 40px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--white);
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(28, 77, 28, 0.3);
+}
+
+.insta-text {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.insta-text i {
+    font-size: 4rem;
+}
+
+.insta-text h3 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.insta-text p {
+    color: #ddd; /* Branco gelo */
+    font-size: 1.1rem;
+}
+
+.btn-insta {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.3s, background-color 0.3s;
+    white-space: nowrap; /* Evita que o texto do botão quebre */
+}
+
+.btn-insta:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-color); /* Dourado ao passar o mouse */
+    color: var(--white);
+}
+
+/* --- Responsividade (Mobile) --- */
+@media (max-width: 992px) {
+    .video-card.reel-mode {
+        width: 100%; /* Ocupa largura total no mobile */
+        max-width: 340px; /* Mas limita para não ficar exagerado */
+    }
+
+    .insta-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .insta-text {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .insta-text i {
+        font-size: 3rem;
+    }
+}
+
+/* =========================================
+   SEÇÃO DÚVIDAS FREQUENTES (FAQ)
+   ========================================= */
+
+.faq-section {
+    padding: var(--section-padding);
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+}
+
+.container-faq {
+    max-width: 800px; /* Largura menor para focar na leitura */
+    width: 100%;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-header h2 {
+    font-size: 2.5rem;
+    color: var(--dark-text);
+}
+
+/* --- Personalizando o Accordion do Bootstrap --- */
+
+.accordion-item {
+    border: none; /* Remove bordas padrão */
+    background-color: var(--white);
+    border-radius: 16px !important; /* Arredonda os cantos */
+    margin-bottom: 20px; /* Espaço entre as perguntas */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra suave */
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    padding: 24px;
+    background-color: var(--white);
+    box-shadow: none !important; /* Remove brilho azul padrão do clique */
+}
+
+/* Estado quando a pergunta está ABERTA */
+.accordion-button:not(.collapsed) {
+    color: var(--primary-color); /* Texto fica verde */
+    background-color: rgba(114, 195, 92, 0.1); /* Fundo verde bem clarinho */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* A setinha (ícone) do accordion */
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231C4D1C'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    /* O código acima é um SVG da seta pintado de Verde Escuro (#1C4D1C) */
+    transform: scale(1.2);
+}
+
+.accordion-body {
+    font-size: 1rem;
+    color: var(--gray-text);
+    padding: 24px;
+    line-height: 1.6;
+}
+
+/* CTA Final */
+.faq-cta {
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.faq-cta p {
+    font-size: 1.1rem;
+    color: var(--gray-text);
+}
 
 /* =========================================
    6. RESPONSIVIDADE (Mobile)
