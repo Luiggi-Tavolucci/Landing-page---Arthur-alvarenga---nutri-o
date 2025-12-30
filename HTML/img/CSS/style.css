@@ -1,19 +1,14 @@
 /* =========================================
-   1. VARIÁVEIS E RESET (A Base de Tudo)
+   1. VARIÁVEIS E RESET
    ========================================= */
 :root {
-    /* Paleta do Arthur (Verde e Dourado) */
-    --primary-color: #1C4D1C;   /* Verde Escuro Institucional */
-    --secondary-color: #72C35C; /* Verde Mais Claro (Detalhes) */
-    --accent-color: #C5B119;    /* Dourado/Amarelo Premium */
-    
-    /* Tons Neutros (Inspirado na referência) */
+    --primary-color: #1C4D1C;   /* Verde Escuro */
+    --secondary-color: #72C35C; /* Verde Claro */
+    --accent-color: #C5B119;    /* Dourado */
     --bg-color: #F6F6F6;
     --white: #ffffff;
     --dark-text: #0d0d0d;
     --gray-text: #555555;
-    
-    /* Espaçamento Padrão */
     --section-padding: 80px 8%;
 }
 
@@ -21,17 +16,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte padrão limpa */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html {
-    scroll-behavior: smooth; /* Rolagem suave ao clicar nos links */
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--dark-text);
-}
+html { scroll-behavior: smooth; }
+body { background-color: var(--bg-color); color: var(--dark-text); }
 
 /* =========================================
    2. HEADER & NAVBAR
@@ -40,10 +29,10 @@ header {
     width: 100%;
     padding: 20px 8%;
     background-color: var(--bg-color);
-    position: sticky; /* Menu fixo no topo ao rolar */
+    position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Sombra sutil */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 #navbar {
@@ -53,10 +42,7 @@ header {
     justify-content: space-between;
 }
 
-#logo {
-    height: 60px; /* Tamanho controlado do logo */
-    width: auto;
-}
+#logo { height: 60px; width: auto; }
 
 #nav-list {
     display: flex;
@@ -67,19 +53,18 @@ header {
 .nav-item a {
     text-decoration: none;
     color: var(--dark-text);
-    font-weight: 600; /* Corrigido de width:600 */
+    font-weight: 600;
     transition: color 0.3s;
 }
 
-.nav-item.active a,
-.nav-item a:hover {
+.nav-item.active a, .nav-item a:hover {
     color: var(--primary-color);
     border-bottom: 2px solid var(--accent-color);
 }
 
 #nav-btn {
     padding: 12px 24px;
-    border-radius: 50px; /* Mais arredondado como na referência */
+    border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
@@ -98,8 +83,18 @@ header {
     transform: translateY(-2px);
 }
 
+/* Botão Mobile (Só aparece no celular) */
+#mobile-btn {
+    display: none; /* Escondido no PC */
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
 /* =========================================
-   3. SEÇÃO HERO (HOME)
+   3. HERO SECTION (HOME)
    ========================================= */
 #home {
     display: flex;
@@ -123,9 +118,7 @@ header {
     margin-bottom: 24px;
 }
 
-.home-content span {
-    color:var(--primary-color);
-}
+.home-content span { color: var(--primary-color); }
 
 .home-content p {
     font-size: 1.2rem;
@@ -134,11 +127,7 @@ header {
     margin-bottom: 40px;
 }
 
-.home-btn {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-}
+.home-btn { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* Botões Padronizados */
 button, .btn-zap, .btn-mais {
@@ -157,7 +146,7 @@ button, .btn-zap, .btn-mais {
 }
 
 .btn-zap {
-    background-color: #22a03d; /* Verde WhatsApp Oficial */
+    background-color: #22a03d;
     color: var(--white);
 }
 
@@ -178,92 +167,63 @@ button, .btn-zap, .btn-mais {
     color: var(--white);
 }
 
-/* Card Sobreposto (Foto do Arthur) */
-/* --- Atualização do Card da Home --- */
-
-.sobre-card {
-    position: relative; /* Mantém o contexto para os itens absolutos */
-    width: 380px;      /* Largura original ajustada levemente */
-    height: 500px;     /* Altura */
-    /* MUDANÇA IMPORTANTE: visible para os badges poderem "sair" da caixa */
-    overflow: visible; 
-    border-radius: 40px; /* Borda da imagem */
-    /* Sombra opcional para destacar do fundo */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-}
-
-/* =========================================
-   HERO CARD - VISUAL PREMIUM (Suas Classes)
-   ========================================= */
-
-/* 1. O Container Principal (Onde a mágica acontece) */
+/* --- CARD DA HOME (VERSÃO FINAL LIMPA) --- */
 .sobre-card {
     position: relative;
-    width: 380px;  /* Largura fixa */
-    height: 480px; /* Altura fixa (formato retangular vertical) */
-    z-index: 1;    /* Garante a ordem das camadas */
-    margin: 40px auto; /* Centraliza se necessário */
-    overflow: visible; /* ESSENCIAL: Deixa os badges "saírem" da caixa */
-    background: transparent; /* Removemos cores de fundo antigas */
-    box-shadow: none; /* Removemos sombras antigas do container */
+    width: 380px;
+    height: 480px;
+    z-index: 1;
+    margin: 40px auto;
+    overflow: visible; /* IMPORTANTE */
+    background: transparent;
+    box-shadow: none;
 }
 
-/* --- A "AURA" (Fundo Iluminado atrás da foto) --- */
-/* Cria o brilho bege difuso atrás da foto usando suas classes */
+/* Aura (Fundo) */
 .sobre-card::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120%; /* Um pouco maior que a foto */
+    width: 120%;
     height: 120%;
-    /* O degradê bege suave igual da referência */
-    background: radial-gradient(circle, rgb(80, 141, 50) 70%, rgba(255,255,255,0) 70%);
-    z-index: -1; /* Fica atrás da foto */
-    filter: blur(30px); /* O efeito de "aura" */
+    background: radial-gradient(circle, rgb(80, 141, 50) 0%, rgba(255,255,255,0) 70%);
+    z-index: -1;
+    filter: blur(30px);
     border-radius: 40px;
     opacity: 0.8;
 }
 
-/* 2. A Imagem Principal (O formato "quadrado arredondado") */
+/* Foto Principal */
 .foto-principal {
     width: 100%;
     height: 100%;
     display: block;
-    /* AQUI ESTÁ O FORMATO PEDIDO: */
-    border-radius: 30px; /* Cantos arredondados modernos */
+    border-radius: 30px;
     object-fit: cover;
-    object-position: top center; /* Foca no rosto */
-    
-    /* Sombra na própria foto para descolar do fundo */
+    object-position: top center;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    
-    /* Borda sutil (opcional, se quiser remover é só apagar) */
     border: none; 
     z-index: 0;
 }
 
-/* --- Estilo dos Badges Flutuantes (Pílulas Brancas) --- */
+/* Badges Flutuantes */
 .badge-flutuante {
     position: absolute;
     background-color: #ffffff;
-    padding: 14px 24px; /* Mais "gordinho" */
+    padding: 14px 24px;
     border-radius: 60px;
     display: flex;
     align-items: center;
     gap: 12px;
-    /* Sombra forte e difusa para parecer que está voando alto */
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-    z-index: 10; /* Fica ACIMA da foto */
+    z-index: 10;
     white-space: nowrap;
     transition: transform 0.3s ease;
 }
 
-/* Efeito ao passar o mouse nos badges */
-.badge-flutuante:hover {
-    transform: translateY(-5px);
-}
+.badge-flutuante:hover { transform: translateY(-5px); }
 
 .badge-flutuante span {
     font-weight: 700;
@@ -271,91 +231,12 @@ button, .btn-zap, .btn-mais {
     font-size: 1rem;
 }
 
-/* Cores dos Ícones (Mantendo suas classes) */
 .check-azul { color: #1DA1F2; font-size: 1.4rem; }
 .check-dourado { color: #C5B119; font-size: 1.4rem; }
 
-/* --- POSICIONAMENTO (Ajustado para o formato retangular) --- */
-
-/* 1. Nome (Esquerda, mais alto) */
-.posicao-nome {
-    top: 30%;
-    left: -50px; /* Sai bastante para a esquerda */
-}
-
-/* 2. Cargo (Direita, meio) */
-.posicao-cargo {
-    top: 55%;
-    right: -40px; /* Sai para a direita */
-}
-
-/* Garante que a imagem respeite a borda arredondada */
-/* Atualize este bloco no seu CSS */
-
-.foto-principal {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 40px; /* Mantém o arredondado */
-    display: block;
-    
-    /* --- ADICIONANDO A BORDA SOMBREADA --- */
-    /* 1. Uma borda fina dourada para definir o limite */
-    
-    /* 2. Uma sombra projetada escura e macia para dar profundidade */
-    /* box-shadow: deslocamento-x | deslocamento-y | desfoque | cor */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-    
-    /* Garante que a borda não aumente o tamanho total da imagem */
-    box-sizing: border-box; 
-}
-/* Estilo padrão das "Etiquetas" (Badges) */
-.badge-flutuante {
-    position: absolute;
-    background-color: #ffffff;
-    padding: 12px 24px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    z-index: 10; /* Fica acima da foto */
-    white-space: nowrap;
-}
-
-.badge-flutuante span {
-    font-weight: 700;
-    color: var(--dark-text); /* ou #000 */
-    font-size: 0.95rem;
-}
-
-/* Cores dos Ícones */
-.check-azul { color: #1DA1F2; font-size: 1.3rem; }
-.check-dourado { color: #C5B119; font-size: 1.3rem; }
-
-/* --- Posicionamento Individual --- */
-
-/* 1. Nome na Esquerda */
-.posicao-nome {
-    top: 35%;       /* Altura */
-    left: -30px;    /* Joga para fora na esquerda */
-}
-
-/* 2. Cargo na Direita */
-.posicao-cargo {
-    top: 65%;       /* Altura */
-    right: -30px;   /* Joga para fora na direita */
-}
-
-.grupo-fotos img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    margin-left: -12px; /* Sobreposição */
-    object-fit: cover;
-}
-.grupo-fotos img:first-child { margin-left: 0; }
+/* Posicionamento dos Badges */
+.posicao-nome { top: 30%; left: -50px; }
+.posicao-cargo { top: 55%; right: -40px; }
 
 /* =========================================
    4. VANTAGENS
@@ -369,15 +250,12 @@ button, .btn-zap, .btn-mais {
     background-color: var(--white);
 }
 
-.vantagens-intro {
-    text-align: center;
-    max-width: 800px;
-}
+.vantagens-intro { text-align: center; max-width: 800px; }
 
 .vantagens-intro h4 {
     display: inline-block;
     padding: 8px 16px;
-    background-color: #22a07c; /* Dourado clarinho */
+    background-color: #22a07c;
     color: var(--primary-color);
     border-radius: 50px;
     font-size: 0.9rem;
@@ -386,14 +264,11 @@ button, .btn-zap, .btn-mais {
     margin-bottom: 16px;
 }
 
-.vantagens-intro h2 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
+.vantagens-intro h2 { font-size: 2.5rem; color: var(--primary-color); }
 
 .vantagens-card {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     width: 100%;
 }
@@ -425,40 +300,28 @@ button, .btn-zap, .btn-mais {
     color: var(--primary-color);
 }
 
-.vantagens-card p {
-    color: var(--gray-text);
-    line-height: 1.5;
-}
+.vantagens-card p { color: var(--gray-text); line-height: 1.5; }
 
 /* =========================================
-   5. METODOLOGIA (Transformada em Timeline)
+   5. METODOLOGIA (Timeline)
    ========================================= */
 .metodologia {
     display: flex;
     padding: var(--section-padding);
     gap: 60px;
-    align-items: flex-start; /* Alinha no topo */
+    align-items: flex-start;
 }
 
-/* A imagem fica fixa ou lateral */
 .metodologia-card {
     width: 40%;
     height: 600px;
     border-radius: 20px;
     overflow: hidden;
-    position: sticky; /* Faz a foto acompanhar o scroll se a lista for longa */
+    position: sticky;
     top: 100px;
 }
 
-.metodologia-conteudo {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-}
-
-.metodologia-title {
-    margin-bottom: 40px;
-}
+.metodologia-conteudo { width: 60%; display: flex; flex-direction: column; }
 
 .metodologia-title p {
     color: var(--accent-color);
@@ -467,12 +330,8 @@ button, .btn-zap, .btn-mais {
     margin-bottom: 10px;
 }
 
-.metodologia-title h2 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
+.metodologia-title h2 { font-size: 2.5rem; color: var(--primary-color); }
 
-/* Estilo dos Passos (Timeline) */
 .metodologia-lista > div {
     display: flex;
     gap: 20px;
@@ -480,7 +339,6 @@ button, .btn-zap, .btn-mais {
     position: relative;
 }
 
-/* Ícone do passo com círculo */
 .metodologia-lista i {
     flex-shrink: 0;
     width: 50px;
@@ -492,17 +350,16 @@ button, .btn-zap, .btn-mais {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    z-index: 2; /* Fica acima da linha */
+    z-index: 2;
 }
 
-/* Linha conectora (o truque da timeline) */
 .metodologia-lista > div:not(:last-child)::after {
     content: '';
     position: absolute;
     top: 50px;
-    left: 24px; /* Metade da largura do ícone (50/2 = 25 - 1px da borda) */
+    left: 24px;
     width: 2px;
-    height: calc(100% - 10px); /* Conecta até o próximo */
+    height: calc(100% - 10px);
     background-color: #ddd;
     z-index: 1;
 }
@@ -514,19 +371,14 @@ button, .btn-zap, .btn-mais {
     margin-bottom: 8px;
 }
 
-.metodologia-lista p {
-    color: var(--gray-text);
-    line-height: 1.5;
-    margin-bottom: 8px;
-}
+.metodologia-lista p { color: var(--gray-text); line-height: 1.5; margin-bottom: 8px; }
 
 /* =========================================
-   SEÇÃO SOBRE MIM (MOSAICO DE FOTOS)
+   6. SOBRE MIM (Mosaico)
    ========================================= */
-
 .sobre-mim {
     padding: var(--section-padding);
-    background-color: var(--white); /* Fundo branco para contraste com o cinza do site */
+    background-color: var(--white);
     display: flex;
     justify-content: center;
 }
@@ -539,18 +391,14 @@ button, .btn-zap, .btn-mais {
     width: 100%;
 }
 
-/* --- Estilo do Texto --- */
-.sobre-texto {
-    flex: 1; /* Ocupa metade da tela */
-}
+.sobre-texto { flex: 1; }
 
 .section-tag {
     color: #22a07c;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 10px;
-    display: flex;
-    justify-self: center;
+    display: inline-block;
     letter-spacing: 1px;
 }
 
@@ -562,7 +410,8 @@ button, .btn-zap, .btn-mais {
 }
 
 .destaque-texto {
-    color: var(--primary-color); /* Ou use var(--accent-color) se quiser dourado */
+    color: var(--primary-color);
+    text-decoration: underline;
     text-decoration-color: var(--accent-color);
 }
 
@@ -573,7 +422,6 @@ button, .btn-zap, .btn-mais {
     line-height: 1.6;
 }
 
-/* Lista de Qualificações */
 .sobre-lista {
     list-style: none;
     display: flex;
@@ -581,35 +429,16 @@ button, .btn-zap, .btn-mais {
     gap: 20px;
 }
 
-.sobre-lista li {
-    display: flex;
-    align-items: flex-start; /* Alinha ícone no topo se o texto for grande */
-    gap: 15px;
-}
+.sobre-lista li { display: flex; align-items: flex-start; gap: 15px; }
+.sobre-lista i { color: #22a07c; font-size: 1.5rem; margin-top: -3px; }
+.sobre-lista span { color: var(--gray-text); font-size: 1rem; line-height: 1.5; }
+.sobre-lista strong { color: var(--primary-color); }
 
-.sobre-lista i {
-    color: #22a07c;
-    font-size: 1.5rem;
-    margin-top: -3px; /* Ajuste fino para alinhar com o texto */
-}
-
-.sobre-lista span {
-    color: var(--gray-text);
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.sobre-lista strong {
-    color: var(--primary-color);
-}
-
-/* --- Estilo da Galeria (Mosaico) --- */
+/* Galeria Mosaico */
 .sobre-galeria {
     flex: 1;
     display: grid;
-    /* Define 2 colunas */
     grid-template-columns: 1.5fr 1fr; 
-    /* Define 2 linhas de altura fixa (ajuste conforme necessário) */
     grid-template-rows: 300px 300px; 
     gap: 15px;
 }
@@ -624,32 +453,20 @@ button, .btn-zap, .btn-mais {
 .foto-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Garante que a foto preencha sem distorcer */
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-/* Efeito de zoom suave ao passar o mouse */
-.foto-item:hover img {
-    transform: scale(1.05);
-}
+.foto-item:hover img { transform: scale(1.05); }
 
-/* Configuração do Grid */
-
-/* Foto Principal: Ocupa a 1ª coluna inteira (da linha 1 até a 3) */
-.principal {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-}
-
-/* Fotos menores ocupam a coluna 2 automaticamente */
+.principal { grid-column: 1 / 2; grid-row: 1 / 3; }
 
 /* =========================================
-   SEÇÃO CONTEÚDOS (REELS VIVOS) & INSTAGRAM
+   7. CONTEÚDOS E INSTAGRAM
    ========================================= */
-
 .conteudos-section {
     padding: var(--section-padding);
-    background-color: var(--bg-color); /* Cinza claro para separar do fundo branco */
+    background-color: var(--bg-color);
     display: flex;
     justify-content: center;
 }
@@ -662,29 +479,20 @@ button, .btn-zap, .btn-mais {
     gap: 40px;
 }
 
-.conteudos-header {
-    text-align: center;
-    margin-bottom: 10px;
-}
+.conteudos-header { text-align: center; margin-bottom: 10px; }
+.conteudos-header h2 { font-size: 2.5rem; color: var(--primary-color); }
 
-.conteudos-header h2 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-/* --- Grid de Vídeos (Reels) --- */
 .videos-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centraliza se tiver menos de 3 vídeos */
+    justify-content: center;
     gap: 30px;
 }
 
-/* O Cartão do Reel */
 .video-card.reel-mode {
-    width: 300px; /* Largura fixa simulando celular */
+    width: 300px;
     background-color: var(--white);
-    border-radius: 20px; /* Bordas bem arredondadas */
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -695,46 +503,36 @@ button, .btn-zap, .btn-mais {
 }
 
 .video-card.reel-mode:hover {
-    transform: translateY(-10px); /* Sobe um pouco ao passar o mouse */
+    transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* Área do Vídeo (Thumbnail) */
 .video-thumb {
     position: relative;
     width: 100%;
-    /* Proporção 9:16 (Vertical) */
     aspect-ratio: 9 / 16; 
     overflow: hidden;
-    background-color: #000; /* Fundo preto enquanto carrega */
+    background-color: #000;
 }
 
-/* Configuração do Vídeo (HTML5) */
 .video-thumb video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ESSENCIAL: Preenche sem esticar a imagem */
+    object-fit: cover;
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; /* Fica na base */
+    top: 0; left: 0;
+    z-index: 1;
     opacity: 0.9;
     transition: opacity 0.3s;
 }
 
-.video-card:hover .video-thumb video {
-    opacity: 1; /* Fica 100% nítido ao passar o mouse */
-}
+.video-card:hover .video-thumb video { opacity: 1; }
 
-/* Botão de Play (Decorativo) */
 .play-btn {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    /* Efeito de vidro fosco */
+    width: 60px; height: 60px;
     background-color: rgba(255, 255, 255, 0.2); 
     backdrop-filter: blur(5px); 
     border-radius: 50%;
@@ -744,28 +542,16 @@ button, .btn-zap, .btn-mais {
     font-size: 28px;
     color: var(--white);
     border: 1px solid rgba(255,255,255,0.5);
-    z-index: 10; /* Fica ACIMA do vídeo */
+    z-index: 10;
     transition: all 0.3s ease;
 }
 
 .video-card:hover .play-btn {
     background-color: var(--white);
-    color: #E1306C; /* Rosa do Instagram */
+    color: #E1306C;
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Ícone do Instagram no canto superior */
-.reel-overlay {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: var(--white);
-    font-size: 1.5rem;
-    z-index: 10; /* Fica ACIMA do vídeo */
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-/* Área de Texto abaixo do vídeo */
 .video-info {
     padding: 20px;
     background-color: var(--white);
@@ -774,27 +560,26 @@ button, .btn-zap, .btn-mais {
     flex-direction: column;
     justify-content: space-between;
     z-index: 11;
-    position: relative; /* Garante que fique acima de qualquer overflow */
+    position: relative;
 }
 
 .video-info h3 {
     font-size: 1.1rem;
     color: var(--dark-text);
     margin-bottom: 10px;
-    line-height: 1.4;
     font-weight: 700;
 }
 
 .video-info span {
     font-size: 0.9rem;
-    color: var(--primary-color); /* Verde Institucional */
+    color: var(--primary-color);
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-/* --- Banner do Instagram (Rodapé da seção) --- */
+/* Banner Insta */
 .insta-banner {
     background-color: var(--primary-color);
     border-radius: 20px;
@@ -807,25 +592,10 @@ button, .btn-zap, .btn-mais {
     box-shadow: 0 10px 30px rgba(28, 77, 28, 0.3);
 }
 
-.insta-text {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.insta-text i {
-    font-size: 4rem;
-}
-
-.insta-text h3 {
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
-
-.insta-text p {
-    color: #ddd; /* Branco gelo */
-    font-size: 1.1rem;
-}
+.insta-text { display: flex; align-items: center; gap: 30px; }
+.insta-text i { font-size: 4rem; }
+.insta-text h3 { font-size: 2rem; margin-bottom: 5px; }
+.insta-text p { color: #ddd; font-size: 1.1rem; }
 
 .btn-insta {
     background-color: var(--white);
@@ -835,43 +605,18 @@ button, .btn-zap, .btn-mais {
     font-weight: 700;
     text-decoration: none;
     transition: transform 0.3s, background-color 0.3s;
-    white-space: nowrap; /* Evita que o texto do botão quebre */
+    white-space: nowrap;
 }
 
 .btn-insta:hover {
     transform: scale(1.05);
-    background-color: var(--accent-color); /* Dourado ao passar o mouse */
+    background-color: var(--accent-color);
     color: var(--white);
 }
 
-/* --- Responsividade (Mobile) --- */
-@media (max-width: 992px) {
-    .video-card.reel-mode {
-        width: 100%; /* Ocupa largura total no mobile */
-        max-width: 340px; /* Mas limita para não ficar exagerado */
-    }
-
-    .insta-banner {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-        padding: 30px;
-    }
-
-    .insta-text {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .insta-text i {
-        font-size: 3rem;
-    }
-}
-
 /* =========================================
-   SEÇÃO DÚVIDAS FREQUENTES (FAQ)
+   8. FAQ E RODAPÉ
    ========================================= */
-
 .faq-section {
     padding: var(--section-padding);
     background-color: var(--white);
@@ -879,29 +624,17 @@ button, .btn-zap, .btn-mais {
     justify-content: center;
 }
 
-.container-faq {
-    max-width: 800px; /* Largura menor para focar na leitura */
-    width: 100%;
-}
+.container-faq { max-width: 800px; width: 100%; }
+.faq-header { text-align: center; margin-bottom: 40px; }
+.faq-header h2 { font-size: 2.5rem; color: var(--dark-text); }
 
-.faq-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.faq-header h2 {
-    font-size: 2.5rem;
-    color: var(--dark-text);
-}
-
-/* --- Personalizando o Accordion do Bootstrap --- */
-
+/* Accordion */
 .accordion-item {
-    border: none; /* Remove bordas padrão */
+    border: none;
     background-color: var(--white);
-    border-radius: 16px !important; /* Arredonda os cantos */
-    margin-bottom: 20px; /* Espaço entre as perguntas */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra suave */
+    border-radius: 16px !important;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     overflow: hidden;
 }
 
@@ -911,31 +644,22 @@ button, .btn-zap, .btn-mais {
     color: var(--dark-text);
     padding: 24px;
     background-color: var(--white);
-    box-shadow: none !important; /* Remove brilho azul padrão do clique */
+    box-shadow: none !important;
 }
 
-/* Estado quando a pergunta está ABERTA */
 .accordion-button:not(.collapsed) {
-    color: var(--primary-color); /* Texto fica verde */
-    background-color: rgba(114, 195, 92, 0.1); /* Fundo verde bem clarinho */
+    color: var(--primary-color);
+    background-color: rgba(114, 195, 92, 0.1);
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-/* A setinha (ícone) do accordion */
 .accordion-button::after {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231C4D1C'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-    /* O código acima é um SVG da seta pintado de Verde Escuro (#1C4D1C) */
     transform: scale(1.2);
 }
 
-.accordion-body {
-    font-size: 1rem;
-    color: var(--gray-text);
-    padding: 24px;
-    line-height: 1.6;
-}
+.accordion-body { font-size: 1rem; color: var(--gray-text); padding: 24px; line-height: 1.6; }
 
-/* CTA Final */
 .faq-cta {
     text-align: center;
     margin-top: 50px;
@@ -944,42 +668,249 @@ button, .btn-zap, .btn-mais {
     align-items: center;
     gap: 15px;
 }
+.faq-cta p { font-size: 1.1rem; color: var(--gray-text); }
 
-.faq-cta p {
-    font-size: 1.1rem;
-    color: var(--gray-text);
+/* Rodapé */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 8% 20px;
+    margin-top: 40px;
 }
 
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 40px;
+}
+
+.footer-col { flex: 1; min-width: 250px; }
+.footer-col h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--white); }
+.footer-col h4 {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-desc { color: #d1e8d1; line-height: 1.6; margin-bottom: 20px; max-width: 300px; }
+
+.crn-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a {
+    text-decoration: none;
+    color: #d1e8d1;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.footer-links a:hover { color: var(--accent-color); padding-left: 5px; }
+
+.social-buttons { display: flex; flex-direction: column; gap: 15px; }
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--white);
+    background-color: rgba(255,255,255,0.05);
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    width: fit-content;
+}
+.social-btn i { font-size: 1.2rem; }
+.social-btn:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.dev-credit i { color: #ff4d4d; font-size: 0.8rem; }
+
 /* =========================================
-   6. RESPONSIVIDADE (Mobile)
+   9. RESPONSIVIDADE COMPLETA (Mobile & Tablet)
    ========================================= */
 @media (max-width: 992px) {
-    /* Ajustes Gerais */
+    
+    /* --- HEADER & NAV --- */
     header { padding: 15px 5%; }
     
-    #navbar { flex-wrap: wrap; }
-    #nav-list { display: none; } /* Esconde menu no mobile (precisaria de JS p/ abrir) */
-    #nav-btn { display: none; } /* Oculta botão do header no mobile p/ ganhar espaço */
+    #navbar { 
+        position: relative; /* Contexto para o menu absoluto */
+    }
 
-    /* Hero */
+    /* Transforma o menu horizontal em vertical (Dropdown) */
+    #nav-list {
+        display: none; /* Começa escondido (O JS vai mudar para flex) */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Logo abaixo do header */
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 30px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        gap: 25px;
+        text-align: center;
+        border-radius: 0 0 20px 20px;
+        border-top: 1px solid #eee;
+        z-index: 1000;
+    }
+
+    /* Classe que o Javascript vai ativar para mostrar o menu */
+    #nav-list.active { display: flex; animation: slideDown 0.3s ease; }
+
+    #nav-btn { display: none; } /* Botão desktop some */
+    #mobile-btn { display: block; } /* Botão hambúrguer aparece */
+
+    /* --- HERO SECTION (HOME) --- */
     #home { 
-        flex-direction: column-reverse; 
+        flex-direction: column-reverse; /* Texto vai para baixo da foto */
         text-align: center;
         justify-content: center;
         padding-top: 40px;
+        gap: 60px;
+        min-height: auto; /* Remove altura fixa */
     }
 
     .home-content h1 { font-size: 2.5rem; }
     .home-btn { justify-content: center; }
 
-    .sobre-card { width: 100%; height: 400px; margin-bottom: 30px; }
+    /* Ajuste do Card da Foto no Celular */
+    .sobre-card { 
+        width: 100%; 
+        max-width: 360px; /* Limita largura para não estourar */
+        height: 450px; 
+        margin: 0 auto; /* Centraliza */
+    }
 
-    /* Vantagens */
-    .vantagens-card { grid-template-columns: 1fr; } /* Uma coluna só */
+    /* IMPORTANTE: Trazendo os badges para dentro da tela no celular */
+    /* Se deixar -50px, corta a leitura. Mudamos para valores menores */
+    .posicao-nome { 
+        left: -10px; 
+        top: 25%; 
+        padding: 10px 16px; 
+        font-size: 0.9rem;
+    }
+    
+    .posicao-cargo { 
+        right: -10px; 
+        top: 55%; 
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .posicao-rodape {
+        bottom: -20px;
+        width: 90%; /* Ocupa quase toda a largura do card */
+        justify-content: center;
+    }
+
+    /* --- VANTAGENS --- */
+    .vantagens-card { grid-template-columns: 1fr; } /* 1 coluna */
     .vantagens-intro h2 { font-size: 2rem; }
 
-    /* Metodologia */
-    .metodologia { flex-direction: column; }
-    .metodologia-card { display: none; } /* Esconde a foto da metodologia no celular p/ focar no texto */
+    /* --- METODOLOGIA (A CORREÇÃO QUE VOCÊ PEDIU) --- */
+    .metodologia { 
+        flex-direction: column; /* Foto em cima, texto embaixo */
+        gap: 40px;
+    }
+    
+    .metodologia-card { 
+        display: block; /* GARANTINDO QUE APAREÇA */
+        width: 100%;
+        max-width: 500px; /* Não deixa ficar gigante */
+        height: 400px; /* Altura controlada */
+        position: relative; /* Remove o sticky que buga no mobile */
+        top: 0;
+        margin: 0 auto; /* Centraliza */
+    }
+
     .metodologia-conteudo { width: 100%; }
+
+    /* --- SOBRE MIM --- */
+    .container-sobre { 
+        flex-direction: column; 
+        gap: 50px; 
+    }
+    
+    .sobre-galeria {
+        width: 100%;
+        /* Ajusta altura das linhas para caber na tela vertical */
+        grid-template-rows: 250px 250px; 
+    }
+
+    /* --- CONTEÚDOS & INSTAGRAM --- */
+    .video-card.reel-mode { 
+        width: 100%; 
+        max-width: 340px; 
+    }
+    
+    .insta-banner { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 30px; 
+        padding: 30px 20px; 
+    }
+    
+    .insta-text { flex-direction: column; gap: 15px; }
+    .insta-text i { font-size: 3rem; }
+
+    /* --- RODAPÉ --- */
+    .footer-container { 
+        flex-direction: column; 
+        gap: 40px; 
+        text-align: center; 
+    }
+    
+    .footer-desc { margin: 0 auto 20px auto; } /* Centraliza texto */
+    
+    .footer-links a { 
+        justify-content: center; /* Centraliza os links */
+    }
+    
+    .social-buttons { 
+        align-items: center; /* Centraliza botões sociais */
+    }
+    
+    .footer-bottom { 
+        flex-direction: column; 
+        gap: 15px; 
+    }
+}
+
+/* Animaçãozinha suave para o menu descer */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
