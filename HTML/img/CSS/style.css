@@ -107,7 +107,7 @@ header {
 
 .home-content {
     flex: 1;
-    max-width: 600px;
+    max-width: 800px;
 }
 
 .home-content h1 {
@@ -170,8 +170,8 @@ button, .btn-zap, .btn-mais {
 /* --- CARD DA HOME (VERSÃO FINAL LIMPA) --- */
 .sobre-card {
     position: relative;
-    width: 380px;
-    height: 480px;
+    width: 480px;
+    height: 580px;
     z-index: 1;
     margin: 40px auto;
     overflow: visible; /* IMPORTANTE */
@@ -256,7 +256,7 @@ button, .btn-zap, .btn-mais {
     display: inline-block;
     padding: 8px 16px;
     background-color: #22a07c;
-    color: var(--primary-color);
+    color: whitesmoke;
     border-radius: 50px;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -644,7 +644,7 @@ button, .btn-zap, .btn-mais {
     font-weight: 700;
     color: var(--dark-text);
     padding: 24px;
-    background-color: var(--white);
+    background-color: #D4D4D4;
     box-shadow: none !important;
 }
 
