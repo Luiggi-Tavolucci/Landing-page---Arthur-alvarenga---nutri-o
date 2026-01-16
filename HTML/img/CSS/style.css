@@ -20,11 +20,15 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* TRAVA DE SEGURANÇA TOTAL */
 html, body {
+    width: 100%;
     max-width: 100%;
-    overflow-x: hidden; /* Corta qualquer coisa que tente sair da tela */
+    overflow-x: hidden; /* Mantém o celular travado */
     position: relative;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 section {
@@ -33,20 +37,34 @@ section {
     scroll-margin-top: 120px;
 }
 
-html { scroll-behavior: smooth; }
 body { background-color: var(--bg-color); color: var(--dark-text); }
 
 /* =========================================
    2. HEADER & NAVBAR
    ========================================= */
+
+/* 1. Header Fixo Absoluto */
 header {
     width: 100%;
-    padding: 20px 8%;
-    background-color: var(--bg-color);
-    position: sticky;
+    padding: 15px 8%; /* Ajuste fino */
+    background-color: var(--bg-color); /* Garante que tenha cor de fundo */
+    
+    /* MUDANÇA: Usamos Fixed em vez de Sticky */
+    /* Fixed ignora o overflow do body e fica sempre lá */
+    position: fixed; 
     top: 0;
+    left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Sombra leve padrão */
+    transition: all 0.3s ease;
+}
+
+/* 2. Compensação de Altura */
+/* Como o header é fixed, ele sai do fluxo. Precisamos empurrar o site pra baixo */
+body {
+    padding-top: 100px; /* Exatamente a altura do seu menu */
+    background-color: var(--bg-color);
 }
 
 #navbar {
@@ -891,7 +909,10 @@ button, .btn-zap, .btn-mais {
 }
 .faq-cta p { font-size: 1.1rem; color: var(--gray-text); }
 
-/* Rodapé */
+/* =========================================
+   RODAPÉ: COLUNAS CENTRALIZADAS (Lado a Lado)
+   ========================================= */
+
 footer {
     background-color: var(--primary-color);
     color: var(--white);
@@ -901,16 +922,30 @@ footer {
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
+    /* MUDANÇA PRINCIPAL: */
+    justify-content: center; /* Junta as colunas no centro */
+    flex-wrap: wrap;         /* Permite quebrar linha no celular */
+    gap: 250px;               /* Espaço generoso entre a Coluna 1 e a Coluna 2 */
+    
     max-width: 1200px;
     margin: 0 auto;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 40px;
 }
 
-.footer-col { flex: 1; min-width: 250px; }
+/* Ajuste das Colunas para centralizar o conteúdo delas */
+.footer-col { 
+    flex: 0 1 auto; /* Não estica infinitamente, respeita o conteúdo */
+    min-width: 250px; 
+    
+    /* Centraliza o texto e itens DENTRO da coluna */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+/* Títulos e Textos */
 .footer-col h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--white); }
 .footer-col h4 {
     font-size: 0.9rem;
@@ -922,6 +957,7 @@ footer {
 
 .footer-desc { color: #d1e8d1; line-height: 1.6; margin-bottom: 20px; max-width: 300px; }
 
+/* Badge CRN */
 .crn-badge {
     display: inline-flex;
     align-items: center;
@@ -933,19 +969,14 @@ footer {
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-.footer-links { list-style: none; padding: 0; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a {
-    text-decoration: none;
-    color: #d1e8d1;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+/* Botões Sociais */
+.social-buttons { 
+    display: flex; 
+    flex-direction: column; /* Mantém um embaixo do outro como no original */
+    gap: 15px; 
+    align-items: center; /* Centraliza os botões na coluna */
 }
-.footer-links a:hover { color: var(--accent-color); padding-left: 5px; }
 
-.social-buttons { display: flex; flex-direction: column; gap: 15px; }
 .social-btn {
     display: flex;
     align-items: center;
@@ -956,26 +987,33 @@ footer {
     padding: 12px 20px;
     border-radius: 8px;
     transition: all 0.3s;
-    width: fit-content;
+    /* Define largura fixa ou ajustável conforme texto */
+    width: 100%; 
+    justify-content: center; /* Centraliza ícone e texto no botão */
+    min-width: 200px; /* Garante que os botões tenham tamanho padrão */
 }
+
 .social-btn i { font-size: 1.2rem; }
+
 .social-btn:hover {
     background-color: var(--white);
     color: var(--primary-color);
     transform: translateX(5px);
 }
 
+/* Copyright (Rodapé do Rodapé) */
 .footer-bottom {
     padding-top: 20px;
     text-align: center;
     font-size: 0.9rem;
     color: rgba(255,255,255,0.6);
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza no meio */
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
 }
+
 .dev-credit i { color: #ff4d4d; font-size: 0.8rem; }
 
 /* =================================================================
