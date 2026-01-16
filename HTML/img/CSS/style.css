@@ -512,16 +512,16 @@ button, .btn-zap, .btn-mais {
 
 
 /* =========================================
-   SEÇÃO BÔNUS (CORRIGIDA E SEGURA)
+   SEÇÃO BÔNUS (CORRIGIDA E BLINDADA)
    ========================================= */
 .bonus-section {
     /* Ocupa pelo menos a altura da tela menos o cabeçalho */
     min-height: calc(100vh - 100px);
-    
+
     /* Centraliza o conteúdo verticalmente */
     display: flex;
     align-items: center; 
-    
+
     padding: var(--section-padding);
     background-color: #0d260d; 
     color: var(--white);
@@ -534,17 +534,20 @@ button, .btn-zap, .btn-mais {
     width: 100%;
     margin: 0 auto;
     display: flex;
-    align-items: flex-start; /* Alinha tudo no topo para não dar conflito com imagens grandes */
+    align-items: flex-start;
     justify-content: space-between;
     gap: 60px;
+    position: relative;
+    z-index: 5; /* Garante que o conteúdo fique acima do fundo */
 }
 
 /* --- Coluna de Texto --- */
 .bonus-text {
     flex: 1;
     max-width: 500px;
-    /* Um pequeno ajuste para descer o texto e alinhar visualmente com a primeira imagem */
-    margin-top: 40px; 
+    margin-top: 40px;
+    position: relative;
+    z-index: 10; /* Garante que o texto fique acima das imagens se encavalar */
 }
 
 .bonus-tag {
@@ -609,6 +612,7 @@ button, .btn-zap, .btn-mais {
     margin-bottom: 30px;
 }
 
+/* --- O BOTÃO (A CORREÇÃO PRINCIPAL) --- */
 .btn-gold {
     display: inline-flex;
     padding: 16px 32px;
@@ -618,6 +622,11 @@ button, .btn-zap, .btn-mais {
     text-decoration: none;
     border-radius: 8px;
     transition: transform 0.3s, box-shadow 0.3s;
+    
+    /* SEGURANÇA MÁXIMA PARA O CLIQUE: */
+    position: relative;
+    z-index: 100; /* Força ele a ficar no topo de tudo */
+    cursor: pointer;
 }
 
 .btn-gold:hover {
@@ -626,19 +635,19 @@ button, .btn-zap, .btn-mais {
     color: #000;
 }
 
-/* --- IMAGENS BÔNUS (Empilhadas e Grandes) --- */
-
+/* --- IMAGENS BÔNUS --- */
 .bonus-visual-real {
     flex: 1;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-start; 
+    align-items: flex-start;
+    /* Evita que a área da imagem bloqueie o texto no mobile */
+    pointer-events: none; 
 }
 
 .bonus-images-container {
     display: flex;
-    /* Garante que fiquem uma em cima da outra */
     flex-direction: column; 
     gap: 30px; 
     width: 100%; 
@@ -647,15 +656,15 @@ button, .btn-zap, .btn-mais {
 
 .bonus-img {
     width: 100%;
-    /* Remove limite de tamanho para elas ficarem grandes */
     max-width: 100%; 
     height: auto;
     border-radius: 12px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.5);
     transition: transform 0.3s ease;
+    /* Reativa o toque na imagem (se quiser dar zoom) */
+    pointer-events: auto; 
 }
 
-/* Leve rotação para estilo */
 .img-topo { transform: rotate(-1deg); }
 .img-guias { transform: rotate(1deg); }
 
@@ -664,17 +673,19 @@ button, .btn-zap, .btn-mais {
     z-index: 10;
 }
 
-/* --- BRILHO DE FUNDO --- */
+/* --- BRILHO DE FUNDO (CORRIGIDO) --- */
 .blur-bg {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px; height: 400px; /* Aumentei um pouco */
+    width: 400px; height: 400px;
     background-color: var(--accent-color);
     filter: blur(100px);
     opacity: 0.1;
-    z-index: 1;
-    border-radius: 50%;
+    z-index: 0; /* Camada mais baixa possível */
+    
+    /* O SEGREDO: Clicks atravessam o brilho */
+    pointer-events: none; 
 }
 
 /* =========================================
