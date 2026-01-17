@@ -1126,6 +1126,67 @@ footer {
 }
 
 /* =================================================================
+   TABLETS E IPADS (Até 1024px)
+   ================================================================= */
+@media (max-width: 1024px) {
+
+    /* --- Centraliza o Texto do "Sobre Mim" no Tablet --- */
+    .container-sobre {
+        flex-direction: column; /* Coloca foto e texto um embaixo do outro */
+        text-align: center;
+    }
+    
+    .sobre-texto {
+        margin-bottom: 40px; /* Espaço entre o texto e as fotos */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Garante que tudo fique no meio */
+    }
+
+    /* --- O PULO DO GATO: Estilo de Cards para a Lista --- */
+    .sobre-lista {
+        width: 100%;
+        max-width: 600px; /* Impede que o card fique gigante na tela larga do iPad */
+        margin: 0 auto;   /* Centraliza o bloco da lista */
+    }
+
+    .sobre-lista li {
+        flex-direction: column; 
+        align-items: center;    
+        text-align: center;     
+        
+        background-color: #ffffff;
+        padding: 24px; /* Um pouco mais de espaço no tablet */
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        border: 1px solid #f0f0f0;
+        gap: 15px;
+        margin-bottom: 15px; /* Espaço entre os cards */
+    }
+
+    /* Ícones Grandes e Bonitos */
+    .sobre-lista i {
+        font-size: 2.2rem !important; 
+        margin-top: -5px;
+        margin-bottom: 5px;
+        
+        background-color: rgba(28, 77, 28, 0.1); 
+        width: 70px; /* Ícone um pouco maior no tablet */
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: var(--primary-color); /* Garante que o ícone fique verde */
+    }
+    
+    .sobre-lista span {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}
+
+/* =================================================================
    10. RESPONSIVIDADE NÍVEL 2: CELULARES PADRÃO (Até 768px)
    Objetivo: Layout de coluna única e ajustes finos.
    ================================================================= */
@@ -1195,6 +1256,38 @@ footer {
         font-size: 0.8rem !important;
         padding: 8px 12px !important;
         left: auto !important;
+    }
+
+    /* DENTRO DE @media (max-width: 480px) */
+
+    /* 1. Badge do NOME (Arthur Alvarenga) - Vamos subir ele */
+    .posicao-nome {
+        /* Fixa na esquerda */
+        left: 0 !important; 
+        right: auto !important;
+        
+        /* MUDANÇA: Subi de 80px para 130px */
+        bottom: 250px !important; 
+        top: auto !important;
+        
+        transform: none !important;
+        font-size: 0.85rem !important;
+        padding: 8px 16px !important;
+    }
+
+    /* 2. Badge do CARGO (Nutricionista) - Mantemos embaixo */
+    .posicao-cargo {
+        /* Fixa na direita */
+        right: 0 !important; 
+        left: auto !important;
+        
+        /* MUDANÇA: Mantive em 30px (bem na base) */
+        bottom: 120px !important; 
+        top: auto !important;
+        
+        transform: none !important;
+        font-size: 0.85rem !important;
+        padding: 8px 16px !important;
     }
 
     /* --- 3. BÔNUS: Alinhamento Perfeito --- */
@@ -1303,5 +1396,66 @@ footer {
         pointer-events: none;
         width: 100%; /* Reduz a largura do brilho no mobile para não vazar tanto */
         height: 100%;
+    }
+
+    /* 1. Afastar o botão da foto (que está embaixo dele) */
+    .home-btn {
+        /* Mantém a margem de cima que já existia */
+        margin-top: 40px !important;
+        
+        /* ADICIONA margem embaixo para "descolar" da foto */
+        margin-bottom: 40px; 
+    }
+
+    /* 2. Diminuir o tamanho do botão verde */
+    .btn-zap {
+        /* O original é 'padding: 16px 32px;' */
+        padding: 12px 20px !important; /* Reduz o preenchimento interno */
+        
+        /* Opcional: Se quiser diminuir um pouco a letra também */
+        font-size: 0.9rem !important; 
+        
+        /* Garante que ele não fique esticado na largura total se não precisar */
+        width: auto !important; 
+        min-width: 250px; /* Define um tamanho mínimo para não ficar muito pequeno */
+    }
+
+    /* DENTRO DO @media (max-width: 480px) */
+
+    /* Transforma a lista em blocos centralizados */
+    .sobre-lista li {
+        flex-direction: column; /* Coloca o ícone em cima do texto */
+        align-items: center;    /* Centraliza o ícone e o texto horizontalmente */
+        text-align: center;     /* Centraliza a escrita do parágrafo */
+        
+        /* Visual de "Card" leve para organizar */
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03); /* Sombra super leve */
+        border: 1px solid #f0f0f0;
+        gap: 12px; /* Espaço entre ícone e texto */
+    }
+
+    /* Aumenta os ícones para dar destaque */
+    .sobre-lista i {
+        font-size: 2rem !important; /* Ícone grande (aprox 32px) */
+        margin-top: -5px;
+        margin-bottom: 5px;
+        
+        /* Fundo circular no ícone (Opcional - fica charmoso) */
+        background-color: rgba(28, 77, 28, 0.1); /* Verde bem clarinho */
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    /* Ajuste no texto para ficar bonito no card */
+    .sobre-lista span {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 }
