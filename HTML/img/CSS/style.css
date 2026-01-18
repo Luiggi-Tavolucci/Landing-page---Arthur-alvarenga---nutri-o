@@ -1316,6 +1316,34 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* DENTRO DO @media (max-width: 480px) */
+
+    /* 1. Reduzindo ainda mais o "respiro" interno da caixa */
+    .vantagens-card > div {
+        /* MUDANÇA: Reduzi o topo/baixo de 25px para 18px */
+        padding: 18px 20px !important;
+
+        /* (Mantenha as regras de largura que já fizemos antes) */
+        width: 85% !important;
+        margin: 15px auto 15px auto !important;
+        height: auto !important;
+    }
+
+    /* 2. Reduzindo o ícone drasticamente (O que você pediu) */
+    .vantagens-card i {
+        /* MUDANÇA: De 2rem para 1.5rem (Fica bem menorzinho) */
+        font-size: 1.5rem !important;
+
+        /* MUDANÇA: Colando ele mais no título (De 10px para 5px) */
+        margin-bottom: 5px !important;
+    }
+
+    /* (Opcional) Se quiser ganhar mais uns pixels, diminua o título também */
+    .vantagens-card strong {
+        font-size: 1rem !important; /* Era 1.1rem */
+        margin-bottom: 3px !important; /* Cola mais no texto */
+    }
+
 /* =================================================================
    AJUSTES FINAIS: CELULARES (Até 480px)
    Foco: Espaço na Home e Centralização da Metodologia
@@ -1421,6 +1449,18 @@ footer {
     }
 
     /* DENTRO DO @media (max-width: 480px) */
+/* DENTRO DO @media (max-width: 480px) */
+
+    /* 1. O PAI (A Lista em si) - Removemos o empurrão para a direita */
+    .sobre-lista {
+        padding-left: 0 !important; /* O SEGREDO: Mata o espaço vazio na esquerda */
+        margin: 0 auto !important;  /* Centraliza o bloco na tela */
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Garante que os filhos fiquem no meio */
+    }
+
 
     /* Transforma a lista em blocos centralizados */
     .sobre-lista li {
@@ -1435,6 +1475,10 @@ footer {
         box-shadow: 0 4px 15px rgba(0,0,0,0.03); /* Sombra super leve */
         border: 1px solid #f0f0f0;
         gap: 12px; /* Espaço entre ícone e texto */
+
+        /* O AJUSTE DE LARGURA E MARGEM: */
+        width: 90% !important;        /* Ocupa 90% da tela */
+        margin: 0 auto 15px auto !important; /* Margem automática dos lados para centralizar */
     }
 
     /* Aumenta os ícones para dar destaque */
@@ -1457,5 +1501,19 @@ footer {
     .sobre-lista span {
         font-size: 0.95rem;
         line-height: 1.5;
+    }
+
+    /* DENTRO DO @media (max-width: 480px) */
+
+    .video-card.reel-mode {
+        /* MUDANÇA: Reduzimos para 75% da tela ou no máximo 280px */
+        width: 75% !important; 
+        max-width: 280px !important; /* Trava a largura para não ficar gigante */
+        
+        /* Centraliza o card e dá um espaço de 30px para o de baixo */
+        margin: 0 auto 30px auto !important; 
+        
+        /* Opcional: Garante que a sombra não fique cortada */
+        transform: none !important; 
     }
 }
